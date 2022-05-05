@@ -3484,3 +3484,11 @@ ul.chat-available-user li a:hover {
 #copyrights a {
   color: #fff;
 }
+
+.ocultar {
+    display: none;
+}
+
+.mostrar {
+    display: block;
+}

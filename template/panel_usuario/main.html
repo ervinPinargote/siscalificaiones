@@ -1,1 +1,43 @@
 {% extends "panel_usuario/base.html" %}
+{% block contenido_principal %}
+<h1 style="margin-left:20%;">**** Jurado Calificador de: {{user.id_certamen.nombre_certamen}} ****</h1>
+<div class="row" style="width:75%;">
+    <br>
+    <br>
+    <h2 style="padding-left: 15px;">Nuestras Participantes: </h2>
+    <br>
+
+    {% for pr in partic %}
+
+    <div class="col-md-4 mb">
+        <div class="message-p pn">
+            <div class="message-header">
+                <h5> Srta. {{pr.nombres}} {{pr.apellidos}}</h5>
+            </div>
+            <div class="row">
+                <div class="col-md-3 centered hidden-sm hidden-xs">
+                    <img src="{{pr.foto.url}}" class="img-circle" width="65">
+                </div>
+                <div class="col-md-9">
+                    <p>
+                        <name>{{pr.representa}}</name>
+
+                    </p>
+                    <p class="small">{{pr.edad}} años</p>
+                    <p class="message" style="width:90%;" align="justify"> {{pr.acerca}}</p>
+                    <a class="btn btn-default"
+                    onclick="abrirmodal('{% url 'calificar' pr.id %}'); "
+                    >Calificar </a>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <!-- /Message Panel-->
+    </div>
+    {% endfor %}
+
+
+</div>
+{% endblock %}

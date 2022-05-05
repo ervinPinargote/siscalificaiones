@@ -1,6 +1,5 @@
 {% load static %}
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +16,7 @@
   <link href="{% static 'base/lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
   <!--external css-->
   <link href="{% static 'base/lib/font-awesome/css/font-awesome.css' %}" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="css/zabuto_calendar.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'base/css/zabuto_calendar.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'base/lib/gritter/css/jquery.gritter.css' %}" />
   <!-- Custom styles for this template -->
   <link href="{% static 'base/css/style.css' %}" rel="stylesheet">
@@ -66,7 +65,7 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
           <p class="centered"><a href="profile.html"><img src="{% static 'img/ui-sam.jpg' %}" class="img-circle" width="80"></a></p>
-          <h5 class="centered">{{user.first_name}} {{user.last_name}}</h5>
+          <h5 class="centered">{{user.id_usuario.first_name}} {{user.id_usuario.last_name}}</h5>
           <li class="mt">
             <a class="active" href="index.html">
               <i class="fa fa-dashboard"></i>
@@ -186,9 +185,8 @@
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
-        <div class="row">
-
-        </div>
+       {% block contenido_principal %}
+       {% endblock %}
         <!-- /row -->
       </section>
     </section>
@@ -196,8 +194,38 @@
     <!--footer start-->
 
     <!--footer end-->
+
+
+
+
+    <div class="modal fade" id="modal" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                {% block titlemodal %}{% endblock %}
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% block modalcuerpo%}
+
+            {% endblock %}
+
+            <div id="error" class="alert alert-danger ocultar" role="alert">
+                Las Contraseñas no coinciden, vuelve a intentar !
+            </div>
+            <div id="ok" class="alert alert-success ocultar" role="alert">
+                Las Contraseñas coinciden !
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
+  <script src="{% static 'jsmodal/extras.js' %}"></script>
   <script src="{% static 'base/lib/jquery/jquery.min.js' %}"></script>
 
   <script src="{% static 'base/lib/bootstrap/js/bootstrap.min.js' %}"></script>
